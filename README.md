@@ -29,7 +29,7 @@ To test this component, you can run the following code in `main.py`:
 
 
 ### Distributed algorithms comparison
-Compare our distributed algorithm's performance with other algorithm. We choose four algorithms: Tracking-ADMM, DPMM, IPLUX, PDC-ADMM. We achieve these algorithms in `TrackingADMM.py`, `DPMM.py`, `IPLUX.py`, `PDC-ADMM.py` respectively, and acheive ours in `Ours.py`.
+Compare our distributed algorithm's performance with other algorithm. We choose four algorithms: Tracking-ADMM, DPMM, IPLUX, DC-ADMM. We achieve these algorithms in `TrackingADMM.py`, `DPMM.py`, `IPLUX.py`, `DCADMM.py` respectively, and acheive ours in `Ours.py`.
 The complete pipeline is implemented in `distributed_alg_comparison(examplenow)` function in `Main.py`.
 To test this component, you can run the following code in `main.py`:
 
@@ -37,7 +37,7 @@ To test this component, you can run the following code in `main.py`:
 	distributed_alg_comparison(examplenow = k)
 
 ### Algorithm acceleration comparison
-Compare the performance between Algorithm 1 (Consensus-Tracking-ADMM) and Algorithm 2 (Accelerated-Consensus-Tracking ADMM).
+Compare the performance between Algorithm 1 (Consensus-Tracking-ADMM) and Algorithm 2 (Improved-Consensus-Tracking-ADMM).
 The complete pipeline is implemented in `acceleration_comparison(examplenow)` function in `Main.py`.
 To test this component, you can run the following code in `main.py`:
 
