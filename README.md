@@ -1,7 +1,7 @@
 # README
 
 ## Overview
-This repository contains the Python implementation of the algorithms and experiments presented in our paper "Reconciling Information Opacity and Collective Efficiency: Distributed Approach in Mechanism-Driven Systems".
+This repository contains the Python implementation of the algorithms and experiments presented in our paper "**Harnessing Individual Motivation for Collective Efficiency: A Mechanism-Driven Distributed Optimization Method**".
 The code is designed to demonstrate various functionalities, including example creation, comparison of mechanism design, evaluation of distributed algorithm performance, and assessment of code acceleration techniques.
 
 ## Requirements
