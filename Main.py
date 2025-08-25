@@ -6,13 +6,13 @@ import std_v3
 import feasible
 import Mech_related
 import Mech_draw
-import Ours
+import Algorithm_2_in_our_paper
 import TrackingADMM
 import DPMM
 import IPLUX
 import DCADMM
-import Ours_with_acceleration
-import Ours_without_acceleration
+import Algorithm_1_in_our_paper_for_improvement_comparison
+import Algorithm_2_in_our_paper_for_improvement_comparison
 import performance_plot
 
 
@@ -70,7 +70,7 @@ def distributed_alg_comparison(examplenow):
         "rho": rho_ours[examplenow - 1],
         "sigma": sigma_ours[examplenow - 1]
     }
-    perf_ours = Ours.alg(envpara, config_ours)
+    perf_ours = Algorithm_2_in_our_paper.alg(envpara, config_ours)
 
     sigma_TrackingADMM = [0.1, 0.5, 0.5]
     config_TrackingADMM = {
@@ -125,43 +125,43 @@ def distributed_alg_comparison(examplenow):
 
 
 
-def acceleration_comparison(examplenow):
-    """ Compare the performance between original algorithm (without acceleration) and accelerated algorithm (our algorithm).
+def improvement_comparison(examplenow):
+    """ Compare the performance between Algorithm 1 (Consensus-Tracking-ADMM) and Algorithm 2 (Improved-Consensus-Tracking-ADMM).
 
     Args:
         examplenow: ID of example, examplenow is in {4,5,6}, representing small-scale, midium-scale, large-scale scenarios respectively.
     """
     envpara = para_new.Param(example = examplenow)
     opt_per = std_v3.std(envpara)
-    rho_acceleration = [0.05, 0.1, 0.3]
-    sigma_acceleration = [0.05, 0.1, 0.3]
-    maxTime_acceleration = [100, 1000, 15000]
+    rho_improvement = [0.05, 0.1, 0.3]
+    sigma_improvement = [0.05, 0.1, 0.3]
+    maxTime_improvement = [100, 1000, 15000]
 
-    config_acceleration = {
+    config_improvement = {
         "best_obj": opt_per,
         "maxT": 150000,
-        "maxTime": maxTime_acceleration[examplenow - 4],
-        "savedir": "savedata/alg_acceleration_example" + str(examplenow) + "_",
-        "rho": rho_acceleration[examplenow - 4],
-        "sigma": sigma_acceleration[examplenow - 4]
+        "maxTime": maxTime_improvement[examplenow - 4],
+        "savedir": "savedata/alg_improvement_example" + str(examplenow) + "_",
+        "rho": rho_improvement[examplenow - 4],
+        "sigma": sigma_improvement[examplenow - 4]
     }
-    perf_acceleration = Ours_with_acceleration.alg(envpara, config_acceleration)
+    perf_improvement = Algorithm_2_in_our_paper_for_improvement_comparison.alg(envpara, config_improvement)
 
 
 
-    config_noacceleration = {
+    config_noimprovement = {
         "best_obj": opt_per,
         "maxT": 10000,
-        "maxTime": maxTime_acceleration[examplenow - 4],
-        "savedir": "savedata/alg_noacceleration_example" + str(examplenow) + "_",
-        "rho": rho_acceleration[examplenow - 4],
-        "sigma": sigma_acceleration[examplenow - 4]
+        "maxTime": maxTime_improvement[examplenow - 4],
+        "savedir": "savedata/alg_noimprovement_example" + str(examplenow) + "_",
+        "rho": rho_improvement[examplenow - 4],
+        "sigma": sigma_improvement[examplenow - 4]
 
     }
-    perf_noacceleration = Ours_without_acceleration.alg(envpara, config_noacceleration)
+    perf_noimprovement = Algorithm_1_in_our_paper_for_improvement_comparison.alg(envpara, config_noimprovement)
 
 
-    totaldir = [config_acceleration["savedir"], config_noacceleration["savedir"]]
+    totaldir = [config_improvement["savedir"], config_noimprovement["savedir"]]
     fig1, fig2 = performance_plot.draw(examplenow = examplenow, envpara = envpara, type = 1, dir = totaldir)
     dir1 = "value_example"+str(examplenow)+".png"
     dir2 = "error_example"+str(examplenow)+".png"
@@ -181,6 +181,6 @@ def acceleration_comparison(examplenow):
 
 #mechanism_design_comparison(examplenow = 1)
 #distributed_alg_comparison(examplenow = 1)
-acceleration_comparison(examplenow = 4)
+#improvement_comparison(examplenow = 4)
 
 
